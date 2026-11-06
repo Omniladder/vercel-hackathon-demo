@@ -1,0 +1,78 @@
+# CLAUDE.md: Project guide
+
+This is the URL Shortener, a small full-stack app for an introductory cloud computing workshop. Users register, log in, create short links, and visit `/r/:code` to be redirected.
+
+The project is meant to teach how a browser, a frontend, managed authentication, an API, and a database work together. Keep code readable and simple. Scope limits are in [ADR 0008](docs/arch/0008-scope-limited-to-core-crud.md).
+
+## Stack
+
+- HTML, CSS, and vanilla JavaScript (ES modules) for the frontend
+- Vite for the dev server and build (`npm run dev`, `npm run build`)
+- Supabase for Auth, PostgreSQL, and the API
+- Vercel for hosting, deployed from GitHub
+
+## File structure
+
+Planned layout. Items marked **(exists)** are in the repo now.
+
+```
+hackathon-demo/
+├── CLAUDE.md              This file
+├── README.md              Setup and run instructions (exists, empty)
+├── index.html             Vite entry page (exists)
+├── package.json           Scripts and dependencies (exists)
+├── package-lock.json      Locked dependency versions
+├── vite.config.js         Vite configuration
+├── vercel.json            Vercel build and rewrite rules (exists, empty)
+├── .gitignore             Ignores node_modules, dist, env files
+├── public/
+│   └── favicon.ico        Static files served as-is
+├── src/
+│   ├── main.js            Entry script: starts the router
+│   ├── router.js          Maps paths to pages, checks sessions
+│   ├── styles.css         Global styles (exists as src/index.css; rename to match plan)
+│   ├── index.html         (exists; the plan puts index.html at the root)
+│   ├── lib/
+│   │   └── supabase.js    Creates the one Supabase client
+│   ├── services/
+│   │   ├── auth.js        Register, log in, log out, get session
+│   │   └── urls.js        Create, list, delete, and look up links
+│   └── pages/
+│       ├── login.js       /login
+│       ├── dashboard.js   /dashboard
+│       ├── create.js      /create
+│       └── redirect.js    /r/:code
+├── supabase/
+│   └── schema.sql         Table, constraints, RLS policies, lookup function
+└── docs/
+    ├── arch/              Architecture Decision Records (see docs/arch/CLAUDE.md)
+    └── ideation/          Planning notes and parked ideas (see docs/ideation/CLAUDE.md)
+```
+
+### Layer rules
+
+- **Pages** (`src/pages/`) render HTML and handle user events. They call services, not Supabase directly.
+- **Services** (`src/services/`) are the only code that calls the Supabase API. Each function does one thing and returns data or throws an error.
+- **`src/lib/supabase.js`** is the only place the Supabase client is created.
+- **Router** decides which page to show and redirects based on the session.
+- **`supabase/schema.sql`** is the source of truth for the database. Changes to tables or policies go here, not only in the Supabase dashboard.
+
+## Docs
+
+- Architecture decisions go in `docs/arch/` as ADRs. Read the relevant ADR before changing code it covers. Details in `docs/arch/CLAUDE.md`.
+- Ideas, flows, and workshop plans go in `docs/ideation/`. Details in `docs/ideation/CLAUDE.md`.
+- If code contradicts an accepted ADR, write a new ADR rather than changing the code silently.
+
+## Commands
+
+```
+npm install        Install dependencies
+npm run dev        Start the local dev server
+npm run build      Build to dist/ (what Vercel runs)
+```
+
+## Conventions
+
+- Environment values for Supabase use the `VITE_` prefix (for example `VITE_SUPABASE_URL`). Never commit real keys. Keep them in `.env.local`, which must be in `.gitignore`.
+- Keep files small and named after what they do. This is a teaching codebase, so favor clear code over clever code.
+- Match the style of the code around your change.
