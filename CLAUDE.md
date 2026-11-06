@@ -43,7 +43,7 @@ hackathon-demo/
 │       ├── create.js      /create
 │       └── redirect.js    /r/:code
 ├── supabase/
-│   └── schema.sql         Table, constraints, RLS policies, lookup function
+│   └── migrations/        Database changes, one file each, run in order
 └── docs/
     ├── arch/              Architecture Decision Records (see docs/arch/CLAUDE.md)
     └── ideation/          Planning notes and parked ideas (see docs/ideation/CLAUDE.md)
@@ -55,7 +55,7 @@ hackathon-demo/
 - **Services** (`src/services/`) are the only code that calls the Supabase API. Each function does one thing and returns data or throws an error.
 - **`src/lib/supabase.js`** is the only place the Supabase client is created.
 - **Router** decides which page to show and redirects based on the session.
-- **`supabase/schema.sql`** is the source of truth for the database. Changes to tables or policies go here, not only in the Supabase dashboard.
+- **`supabase/migrations/`** is the source of truth for the database. Each change is a new migration file, run with `supabase db push`. Changes to tables or policies go here, not only in the Supabase dashboard.
 
 ## Docs
 

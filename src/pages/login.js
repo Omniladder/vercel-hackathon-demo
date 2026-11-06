@@ -2,19 +2,17 @@
  * Connects the login form in `index.html` to the actions for its buttons.
  *
  * The form's markup lives in `index.html`, so this function only adds behavior.
- * It does not talk to the database itself. The caller passes in the functions
- * to run when the user logs in or registers.
+ * It does not talk to the database itself. The caller passes in the function
+ * to run when the user logs in.
  *
  * @param {HTMLElement} container - The element that holds the login form, such as the `#login` div.
- * @param {object} actions - The functions to run for each button.
+ * @param {object} actions - The functions to run for the form.
  * @param {(email: string, password: string) => Promise<void>} actions.onLogIn - Runs when the form is submitted.
- * @param {(email: string, password: string) => Promise<void>} actions.onRegister - Runs when Register is clicked.
  */
-export function setUpLoginPage(container, { onLogIn, onRegister }) {
+export function setUpLoginPage(container, { onLogIn }) {
   const form = container.querySelector('form');
   const errorBox = container.querySelector('.login-error');
   const buttons = container.querySelectorAll('button');
-  const registerButton = container.querySelector('[data-register]');
 
   /**
    * Shows a message in the red box under the form. An empty message hides the box.
@@ -40,13 +38,13 @@ export function setUpLoginPage(container, { onLogIn, onRegister }) {
   }
 
   /**
-   * Checks that both fields are filled in, then runs the chosen action.
-   * If the action fails, the error message is shown under the form.
-   *
-   * @param {(email: string, password: string) => Promise<void>} action - The function to run, either log in or register.
-   * @returns {Promise<void>} Resolves when the action finishes, whether it worked or not.
+   * Runs when the form is sent, by pressing Enter or clicking Log in.
+   * Stops the browser from reloading the page, then checks that both fields
+   * are filled in. If the log in action fails, the error is shown under the form.
    */
-  async function attempt(action) {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
     const email = form.email.value.trim();
     const password = form.password.value;
 
@@ -58,27 +56,11 @@ export function setUpLoginPage(container, { onLogIn, onRegister }) {
     showError('');
     setBusy(true);
     try {
-      await action(email, password);
+      await onLogIn(email, password);
     } catch (error) {
       showError(error.message);
     } finally {
       setBusy(false);
     }
-  }
-
-  /**
-   * Runs when the form is sent, by pressing Enter or clicking Log in.
-   * Stops the browser from reloading the page, then runs the log in action.
-   */
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    attempt(onLogIn);
-  });
-
-  /**
-   * Runs when Register is clicked. Uses the same checks and error handling as Log in.
-   */
-  registerButton.addEventListener('click', () => {
-    attempt(onRegister);
   });
 }

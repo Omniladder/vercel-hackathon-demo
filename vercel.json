@@ -4,6 +4,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/create", "destination": "/create.html" },
+    { "source": "/r/:code", "destination": "/redirect.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

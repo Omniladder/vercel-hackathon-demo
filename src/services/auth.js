@@ -25,3 +25,26 @@ export async function logInOrRegister(email, password) {
   // With email confirmation on, sign-up creates the account but no session yet.
   if (!data.session) throw new Error('Check your email to confirm your account, then log in.');
 }
+
+/**
+ * Returns the current session, or `null` when nobody is logged in in this browser.
+ *
+ * @returns {Promise<object | null>} The session, or `null`.
+ * @throws {Error} If Supabase returns an error.
+ */
+export async function getSession() {
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw error;
+  return data.session;
+}
+
+/**
+ * Logs the user out of this browser. Supabase deletes the session it stored here.
+ * Sessions on other devices stay active.
+ *
+ * @throws {Error} If Supabase returns an error.
+ */
+export async function logOut() {
+  const { error } = await supabase.auth.signOut({ scope: 'local' });
+  if (error) throw error;
+}

@@ -22,7 +22,7 @@ Do not write an ADR for:
 
 Read the relevant ADR before changing code it covers. For example:
 
-- Before editing `supabase/schema.sql` or any RLS policy, read [ADR 0004](0004-single-urls-table-with-row-level-security.md) and [ADR 0006](0006-public-redirect-lookup-without-private-data.md).
+- Before editing `supabase/migrations/` or any RLS policy, read [ADR 0004](0004-single-urls-table-with-row-level-security.md) and [ADR 0006](0006-public-redirect-lookup-without-private-data.md).
 - Before editing `src/services/auth.js` or the router's session checks, read [ADR 0003](0003-supabase-auth-for-sessions.md).
 - Before editing `vercel.json` or the build setup, read [ADR 0007](0007-vercel-hosting-with-spa-rewrites.md).
 

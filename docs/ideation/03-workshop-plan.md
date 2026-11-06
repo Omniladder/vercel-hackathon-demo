@@ -20,7 +20,7 @@ This maps each learning objective to a part of the app the attendee can see or r
 1. **Introduction (10 min):** show the finished app, then the architecture diagram from the project brief.
 2. **Frontend and browser (15 min):** objectives 1 and 2. Walk through `index.html` and one page module.
 3. **Authentication (15 min):** objective 5. Register, log in, and show the session in the browser storage.
-4. **Database and API (20 min):** objectives 4 and 6. Read `supabase/schema.sql`, then create a link and find it in the table.
+4. **Database and API (20 min):** objectives 4 and 6. Read the migration in `supabase/migrations/`, then create a link and find it in the table.
 5. **Redirects (10 min):** objective 7. Open a short link in a new tab and explain each step.
 6. **Deployment (15 min):** objective 3 and 8. Connect the repository to Vercel and push a change.
 7. **Questions and exercises (5 min):** attendees try one exercise from [05-future-ideas.md](05-future-ideas.md).
@@ -34,6 +34,6 @@ This maps each learning objective to a part of the app the attendee can see or r
 
 ## Presenter checklist
 
-- A Supabase project with `supabase/schema.sql` already run, so the table and policies exist.
+- A Supabase project with the migrations in `supabase/migrations/` already pushed, so the table and policies exist.
 - Email confirmation setting decided in advance (see [ADR 0003](../arch/0003-supabase-auth-for-sessions.md)).
 - A backup Supabase project or a recorded demo, in case of network problems.

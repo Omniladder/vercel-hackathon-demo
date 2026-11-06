@@ -47,9 +47,8 @@ The [user guides](docs/guides/README.md) describe the finished app. Each guide s
 
    Never commit this file or paste its keys into code. `.env.local` is already in `.gitignore`.
 
-3. Set up the database. The table, policies, and lookup function are in [supabase/schema.sql](supabase/schema.sql). Run that file in the Supabase SQL editor.
+3. Set up the database. The table, policies, and lookup function are in [supabase/migrations](supabase/migrations). Run `npx supabase db push` after linking the project (see the setup guide).
 
-   > **Note:** `supabase/schema.sql` and `package.json` scripts for Vite are not in the repo yet. Steps 1 and 3 will work once they are added.
 
 ## Run the app
 
@@ -93,7 +92,7 @@ Add the same two `VITE_` values from `.env.local` in the Vercel project settings
 index.html        Page the app loads
 src/              App code: pages, services, router, styles
 docs/             Architecture decisions, ideas, and user guides
-supabase/         Database schema (planned)
+supabase/         Database migrations, run with the Supabase CLI
 ```
 
 For a fuller layout and the rules for each folder, see [CLAUDE.md](CLAUDE.md).

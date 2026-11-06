@@ -12,6 +12,7 @@ These guides show how to use the Short Links app, one task at a time. They are w
 | [04: Visit a short link](04-visit-a-short-link.md) | Open a short link and see where it goes |
 | [05: Log out](05-log-out.md) | End your session |
 | [06: Troubleshooting](06-troubleshooting.md) | Fix common problems |
+| [07: Set up the app from scratch (developers)](07-set-up-from-scratch.md) | Install, connect Supabase, run locally, and deploy to Vercel. For developers, not app users |
 
 ## Before you start
 
