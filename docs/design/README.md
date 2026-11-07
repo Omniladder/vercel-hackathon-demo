@@ -8,8 +8,8 @@ The same descriptions are written as JSDoc comments directly above each function
 
 | Document | Covers |
 |----------|--------|
-| [01-entry-point.md](01-entry-point.md) | `src/main.js`, the first script the browser runs |
-| [02-login-page.md](02-login-page.md) | `src/pages/login.js`, the login and register form |
+| [01-entry-point.md](01-entry-point.md) | `src/pages/login.js`, the first script the browser runs on the login page |
+| [02-login-page.md](02-login-page.md) | `src/pages/login.js`, the login form behavior |
 | [03-auth-service.md](03-auth-service.md) | `src/services/auth.js`, the log in or register action |
 | [04-urls-service.md](04-urls-service.md) | `src/services/urls.js`, the action that saves a short link |
 

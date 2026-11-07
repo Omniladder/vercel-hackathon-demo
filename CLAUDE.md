@@ -28,20 +28,17 @@ hackathon-demo/
 ├── public/
 │   └── favicon.ico        Static files served as-is
 ├── src/
-│   ├── main.js            Entry script: starts the router
-│   ├── router.js          Maps paths to pages, checks sessions
-│   ├── styles.css         Global styles (exists as src/index.css; rename to match plan)
-│   ├── index.html         (exists; the plan puts index.html at the root)
+│   ├── index.css          Global styles
 │   ├── lib/
 │   │   └── supabase.js    Creates the one Supabase client
-│   ├── services/
-│   │   ├── auth.js        Register, log in, log out, get session
-│   │   └── urls.js        Create, list, delete, and look up links
-│   └── pages/
-│       ├── login.js       /login
-│       ├── dashboard.js   /dashboard
-│       ├── create.js      /create
-│       └── redirect.js    /r/:code
+│   ├── pages/
+│   │   ├── login.js       Behavior for the login page (index.html)
+│   │   ├── dashboard.js   Behavior for /dashboard
+│   │   ├── create.js      Behavior for /create
+│   │   └── redirect.js    Behavior for /r/:code
+│   └── services/
+│       ├── auth.js        Register, log in, log out, get session
+│       └── urls.js        Create, list, delete, and look up links
 ├── supabase/
 │   └── migrations/        Database changes, one file each, run in order
 └── docs/
@@ -51,8 +48,8 @@ hackathon-demo/
 
 ### Layer rules
 
-- **Pages** (`src/pages/`) render HTML and handle user events. They call services, not Supabase directly.
-- **Services** (`src/services/`) are the only code that calls the Supabase API. Each function does one thing and returns data or throws an error.
+- **Pages** (`src/pages/`) hold each page's behavior. They render HTML and handle user events. They may call services or the Supabase client directly (see [ADR 0014](docs/arch/0014-page-scripts-in-pages-folder.md)).
+- **Services** (`src/services/`) hold the calls to the Supabase API. Each function does one thing and returns data or throws an error.
 - **`src/lib/supabase.js`** is the only place the Supabase client is created.
 - **Router** decides which page to show and redirects based on the session.
 - **`supabase/migrations/`** is the source of truth for the database. Each change is a new migration file, run with `supabase db push`. Changes to tables or policies go here, not only in the Supabase dashboard.

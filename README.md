@@ -90,7 +90,7 @@ Add the same two `VITE_` values from `.env.local` in the Vercel project settings
 
 ```
 index.html        Page the app loads
-src/              App code: pages, services, router, styles
+src/              App code: page scripts, services, styles
 docs/             Architecture decisions, ideas, and user guides
 supabase/         Database migrations, run with the Supabase CLI
 ```

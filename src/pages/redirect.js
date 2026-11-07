@@ -1,4 +1,4 @@
-import { getOriginalUrl } from './services/urls.js';
+import { getOriginalUrl } from '../services/urls.js';
 
 /**
  * Reads the short code from the address. For `/r/Qw7mZ2` the code is `Qw7mZ2`.

@@ -22,4 +22,4 @@ These guides show how to use the Short Links app, one task at a time. They are w
 
 ## Status of these guides
 
-The guides describe the finished app. Some parts are not built yet. Each guide has a status line at the top. If a guide says "Not built yet," the steps are what the app will do, not what it does today.
+Every feature that the guides describe is built. Each guide has a status line at the top. The guides match the app as it works today.

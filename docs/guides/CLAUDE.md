@@ -17,7 +17,7 @@ Use the same naming as `docs/ideation/`: a two-digit number and a short kebab-ca
 Write each guide from the app's real behavior, not from memory.
 
 1. Read the matching flow in [`docs/ideation/02-user-flows.md`](../ideation/02-user-flows.md). The flow lists the steps, loading states, and errors.
-2. Read the code that does the work: the page in `src/pages/`, and the service in `src/services/` if one exists.
+2. Read the code that does the work: the page's script in `src/pages/`, and the service in `src/services/` if one exists.
 3. Use the exact text on the screen for button labels and error messages. Copy it from the code, and put it in quotes or bold.
 4. If the code and the flow disagree, follow the code, and tell the user about the difference. Do not guess which one is right.
 

@@ -2,37 +2,44 @@
 
 Common problems and what to do about them. If your problem is not here, ask the presenter and include the exact message on the screen.
 
-## The login page shows "Log in is not connected yet" or "Registration is not connected yet"
-
-The sign-in code has not been written yet. This is expected in the current version of the app. See the status note in [01: Register and log in](01-register-and-log-in.md).
-
 ## I forgot my password
 
-Password reset is not part of this app (see [ADR 0003](../arch/0003-supabase-auth-for-sessions.md)). Register a new account with a different email address.
+Password reset is not part of this app (see [ADR 0003](../arch/0003-supabase-auth-for-sessions.md)). Log in with a different email address to create a new account.
 
 ## The dashboard is empty, but I made links before
 
 Check that you are logged in with the same email address you used before. Each account sees only its own links.
 
-## A short link says "This short link doesn't exist"
+If the dashboard shows **Welcome!** and your links do not appear, reload the page. See [03: Copy and delete links](03-copy-and-delete-links.md#when-the-list-does-not-load).
+
+## A short link says "This short link does not exist"
+
+The page shows **Link not found** and "This short link does not exist. Check the address and try again."
 
 - The code may be mistyped. Copy the link again.
 - The link may have been deleted by its owner.
 
 ## A copied link goes to the wrong place
 
-Open the link in the dashboard and check the original address. A short link always sends to the address it was created with. If the address is wrong, delete the link and create a new one.
+Check the **Redirects to** column of the link on the dashboard. A short link always sends visitors to the address shown there. If that address is wrong, delete the link and create a new one. See [03: Copy and delete links](03-copy-and-delete-links.md).
 
-## The button says Copy but nothing is on my clipboard
+## The Copy button says "Copied!" but nothing is on my clipboard
 
-Your browser may block clipboard access. Use the text box that the app shows instead, select the link, and copy it yourself.
+Your browser may block clipboard access. The app then shows an alert with the text. Select the text in the alert and copy it yourself.
 
-## The app shows an error and a Retry button
+## I see a red message under the login or create form
 
-Click **Retry**. If it fails again, check your internet connection and wait a minute. The database service may be down or still starting.
+The message is written to tell you what to fix. Read it and follow the steps in the guide for that task:
+
+- Login messages: [01: Register and log in](01-register-and-log-in.md#when-something-goes-wrong)
+- Create messages: [02: Create a short link](02-create-a-short-link.md#when-something-goes-wrong)
+
+## Delete failed, or the list does not load
+
+If a delete fails, your browser shows an alert with the error message. Try again.
+
+If the list does not load, the dashboard may show **Welcome!** instead of your links. Reload the page. If it still fails, check your internet connection and wait a minute. The database service may be down or still starting.
 
 ## Running the app on my own computer does not work
 
-- Check that `.env.local` is in the project root and has both `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
-- After you change `.env.local`, stop the dev server and run `npm run dev` again.
-- Run `npm install` again if you see "module not found."
+For problems running the app on your computer, see the setup steps in the [project README](../../README.md) and the troubleshooting section of [07: Set up the app from scratch](07-set-up-from-scratch.md#if-something-goes-wrong).
