@@ -4,6 +4,8 @@ A small URL shortener built for an introductory cloud computing workshop. You si
 
 The project is meant to show how a browser, a frontend, managed authentication, an API, and a database work together. The code is written to be read line by line.
 
+![Screenshot of the Short Links login page](docs/images/short-links-site.png)
+
 ## Where to find things
 
 - **User guides:** step-by-step instructions for using the app. Start at [docs/guides/README.md](docs/guides/README.md).
